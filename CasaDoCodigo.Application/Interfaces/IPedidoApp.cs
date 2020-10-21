@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace CasaDoCodigo.Domain.Repositories.Interfaces
+namespace CasaDoCodigo.Application.Interfaces
 {
-    public interface IPedidoRepository
+    public interface IPedidoApp
     {
         Pedido GetPedido(int? pedidoId);
     }

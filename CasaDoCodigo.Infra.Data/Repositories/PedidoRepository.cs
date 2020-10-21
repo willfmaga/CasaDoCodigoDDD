@@ -3,6 +3,7 @@ using CasaDoCodigo.Domain.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CasaDoCodigo.Infra.Data.Repositories
@@ -11,6 +12,24 @@ namespace CasaDoCodigo.Infra.Data.Repositories
     {
         public PedidoRepository(ApplicationContext contexto) : base(contexto)
         {
+        }
+
+        public Pedido GetPedido(int? pedidoId)
+        {
+            Pedido pedido = null;
+
+            if (pedidoId.HasValue)
+                pedido = dbSet.Where(p => p.Id == pedidoId).SingleOrDefault();
+
+            if (pedido == null)
+            {
+                pedido = new Pedido();
+                
+                dbSet.Add(pedido);
+                contexto.SaveChanges();
+            }
+
+            return pedido;
         }
     }
 }

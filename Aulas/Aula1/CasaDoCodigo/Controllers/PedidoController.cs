@@ -6,26 +6,39 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using CasaDoCodigo.Models;
 using CasaDoCodigo.Domain.Interfaces.Repositories;
+using Microsoft.AspNetCore.Http;
+using CasaDoCodigo.Application.Interfaces;
 
 namespace CasaDoCodigo.Controllers
 {
     public class PedidoController : Controller
     {
-        private readonly IProdutoRepository produtoRepository;
+        private readonly IProdutoApp produtoApp;
+        private readonly IHttpContextAccessor contextAccessor;
+        private readonly IPedidoApp pedidoApp;
 
-        public PedidoController(IProdutoRepository produtoRepository)
+        public PedidoController(IProdutoApp produtoApp, IHttpContextAccessor contextAccessor, IPedidoApp pedidoApp)
         {
-            this.produtoRepository = produtoRepository;
+            this.produtoApp = produtoApp;
+            this.contextAccessor = contextAccessor;
+            this.pedidoApp = pedidoApp;
         }
 
         public IActionResult Carrossel()
         {
-            return View(produtoRepository.GetProdutos());
+            return View(produtoApp.GetProdutos());
         }
 
         public IActionResult Carrinho()
         {
-            return View();
+            int? pedidoId = GetPedidoId();
+
+            var pedido = pedidoApp.GetPedido(pedidoId);
+
+            if (!pedidoId.HasValue)
+                SetPedidoId(pedido.Id);
+
+            return View(pedido.Itens);
         }
 
         public IActionResult Resumo()
@@ -37,5 +50,16 @@ namespace CasaDoCodigo.Controllers
         {
             return View();
         }
+
+        private int? GetPedidoId()
+        {
+            return contextAccessor.HttpContext.Session.GetInt32("pedidoId");
+        }
+
+        private void SetPedidoId(int pedidoId)
+        {
+            contextAccessor.HttpContext.Session.SetInt32("pedidoId", pedidoId);
+        }
+
     }
 }

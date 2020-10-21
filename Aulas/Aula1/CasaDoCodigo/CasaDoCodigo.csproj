@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\CasaDoCodigo.Application\CasaDoCodigo.Application.csproj" />
     <ProjectReference Include="..\..\..\CasaDoCodigo.Domain\CasaDoCodigo.Domain.csproj" />
     <ProjectReference Include="..\..\..\CasaDoCodigo.Infra.Data\CasaDoCodigo.Infra.Data.csproj" />
   </ItemGroup>
