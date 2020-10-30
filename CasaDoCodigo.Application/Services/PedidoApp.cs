@@ -16,6 +16,11 @@ namespace CasaDoCodigo.Application.Services
             this.pedidoService = pedidoService;
         }
 
+        public void AddItem(string codigo, Pedido pedido)
+        {
+            pedidoService.AddItem(codigo, pedido);
+        }
+
         public Pedido GetPedido(int? pedidoId)
         {
             return pedidoService.GetPedido(pedidoId);

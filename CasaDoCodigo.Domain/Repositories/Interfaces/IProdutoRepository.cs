@@ -8,5 +8,7 @@ namespace CasaDoCodigo.Domain.Interfaces.Repositories
         void SaveProdutos(List<Livro> livros);
 
         IList<Produto> GetProdutos();
+
+        Produto GetByCodigo(string codigoProduto);
     }
 }

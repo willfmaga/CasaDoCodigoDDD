@@ -19,7 +19,10 @@ namespace CasaDoCodigo.Infra.Data.Repositories
             Pedido pedido = null;
 
             if (pedidoId.HasValue)
-                pedido = dbSet.Where(p => p.Id == pedidoId).SingleOrDefault();
+                pedido = dbSet.Where(p => p.Id == pedidoId)
+                    .Include(p =>p.Itens)
+                        .ThenInclude (i => i.Produto) 
+                            .SingleOrDefault();
 
             if (pedido == null)
             {

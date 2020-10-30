@@ -5,9 +5,8 @@ using System.Text;
 
 namespace CasaDoCodigo.Domain.Services.Interfaces
 {
-    public interface IPedidoService
+    public interface IItemPedidoService
     {
-        Pedido GetPedido(int? pedidoId);
-        void AddItem(string codigo, Pedido pedido);
+        void UpdateQuantidade(ItemPedido itemPedido);
     }
 }

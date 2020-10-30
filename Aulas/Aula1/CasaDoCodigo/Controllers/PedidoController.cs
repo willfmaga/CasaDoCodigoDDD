@@ -8,6 +8,8 @@ using CasaDoCodigo.Models;
 using CasaDoCodigo.Domain.Interfaces.Repositories;
 using Microsoft.AspNetCore.Http;
 using CasaDoCodigo.Application.Interfaces;
+using CasaDoCodigo.Domain.Entities;
+using CasaDoCodigo.Application.Services;
 
 namespace CasaDoCodigo.Controllers
 {
@@ -16,12 +18,14 @@ namespace CasaDoCodigo.Controllers
         private readonly IProdutoApp produtoApp;
         private readonly IHttpContextAccessor contextAccessor;
         private readonly IPedidoApp pedidoApp;
+        private readonly IItemPedidoApp itemPedidoApp;
 
-        public PedidoController(IProdutoApp produtoApp, IHttpContextAccessor contextAccessor, IPedidoApp pedidoApp)
+        public PedidoController(IProdutoApp produtoApp, IHttpContextAccessor contextAccessor, IPedidoApp pedidoApp, IItemPedidoApp iTemPedidoApp)
         {
             this.produtoApp = produtoApp;
             this.contextAccessor = contextAccessor;
             this.pedidoApp = pedidoApp;
+            this.itemPedidoApp = iTemPedidoApp;
         }
 
         public IActionResult Carrossel()
@@ -29,7 +33,7 @@ namespace CasaDoCodigo.Controllers
             return View(produtoApp.GetProdutos());
         }
 
-        public IActionResult Carrinho()
+        public IActionResult Carrinho(string codigo)
         {
             int? pedidoId = GetPedidoId();
 
@@ -38,17 +42,31 @@ namespace CasaDoCodigo.Controllers
             if (!pedidoId.HasValue)
                 SetPedidoId(pedido.Id);
 
+            //add o produto no pedido
+            if (!string.IsNullOrWhiteSpace(codigo))
+            {
+                pedidoApp.AddItem(codigo, pedido);
+            }
+
             return View(pedido.Itens);
         }
 
         public IActionResult Resumo()
         {
-            return View();
+            var pedido = pedidoApp.GetPedido(GetPedidoId());
+
+            return View(pedido);
         }
 
         public IActionResult Cadastro()
         {
             return View();
+        }
+
+        [HttpPost]
+        public void UpdateQuantidade([FromBody]ItemPedido itemPedido)
+        {
+            itemPedidoApp.UpdateQuantidade(itemPedido);
         }
 
         private int? GetPedidoId()

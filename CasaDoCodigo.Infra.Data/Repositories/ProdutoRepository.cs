@@ -12,6 +12,11 @@ namespace CasaDoCodigo.Infra.Data.Repositories
         {
         }
 
+        public Produto GetByCodigo(string codigoProduto)
+        {
+            return dbSet.Where(p => p.Codigo == codigoProduto).SingleOrDefault();
+        }
+
         public IList<Produto> GetProdutos()
         {
             return dbSet.ToList();

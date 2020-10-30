@@ -55,6 +55,8 @@ namespace CasaDoCodigo
             services.AddTransient<IPedidoApp, PedidoApp>();
             services.AddTransient<IPedidoService, PedidoService>();
 
+            services.AddTransient<IItemPedidoApp, ItemPedidoApp>();
+            services.AddTransient<IItemPedidoService, ItemPedidoService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
