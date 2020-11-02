@@ -5,7 +5,6 @@
         data.Quantidade++;
         this.PostQuantidade(data);
 
-        debugger;
     }
 
     clickDecremento(btn) {
@@ -13,7 +12,6 @@
         data.Quantidade--;
         this.PostQuantidade(data);
 
-        debugger;
     }
 
     UpdateQuantidade(input) {
@@ -27,6 +25,14 @@
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify(data)
+        }).done(function (response) {
+            let itemPedido = response.itemPedido;
+            let carrinho = response.carrinhoViewModel;
+
+        debugger;
+            let linhaPedido = $('[item-id=' + itemPedido.Id + ']');
+
+            debugger;
         });
     }
 

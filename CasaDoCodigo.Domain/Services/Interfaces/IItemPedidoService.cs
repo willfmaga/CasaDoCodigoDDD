@@ -7,6 +7,6 @@ namespace CasaDoCodigo.Domain.Services.Interfaces
 {
     public interface IItemPedidoService
     {
-        void UpdateQuantidade(ItemPedido itemPedido);
+        ItemPedido UpdateQuantidade(ItemPedido itemPedido);
     }
 }

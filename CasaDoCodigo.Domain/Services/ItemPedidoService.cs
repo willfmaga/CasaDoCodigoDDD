@@ -16,9 +16,9 @@ namespace CasaDoCodigo.Domain.Services
             this.itempedidoRepository = itempedidoRepository;
         }
 
-        public void UpdateQuantidade(ItemPedido itemPedido)
+        public ItemPedido UpdateQuantidade(ItemPedido itemPedido)
         {
-            itempedidoRepository.UpdateQuantidade(itemPedido);
+            return itempedidoRepository.UpdateQuantidade(itemPedido);
         }
     }
 }

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using CasaDoCodigo.Application.Interfaces;
 using CasaDoCodigo.Domain.Entities;
 using CasaDoCodigo.Application.Services;
+using CasaDoCodigo.Models.ViewModels;
 
 namespace CasaDoCodigo.Controllers
 {
@@ -47,8 +48,9 @@ namespace CasaDoCodigo.Controllers
             {
                 pedidoApp.AddItem(codigo, pedido);
             }
+            var carrinhoviewModel = new CarrinhoViewModel(pedido.Itens);
 
-            return View(pedido.Itens);
+            return View(carrinhoviewModel);
         }
 
         public IActionResult Resumo()
@@ -64,9 +66,16 @@ namespace CasaDoCodigo.Controllers
         }
 
         [HttpPost]
-        public void UpdateQuantidade([FromBody]ItemPedido itemPedido)
+        public UpdateQuantidadeAjaxResponse UpdateQuantidade([FromBody]ItemPedido itemPedido)
         {
-            itemPedidoApp.UpdateQuantidade(itemPedido);
+            int pedidoId = (int)GetPedidoId();
+
+
+            var updateQuantidadeResponse = pedidoApp.UpdateQuantidade(itemPedido, pedidoId);
+
+            return new UpdateQuantidadeAjaxResponse(updateQuantidadeResponse.ItemPedido,
+                              new CarrinhoViewModel(updateQuantidadeResponse.Pedido.Itens));
+
         }
 
         private int? GetPedidoId()

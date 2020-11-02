@@ -37,5 +37,8 @@ namespace CasaDoCodigo.Domain.Entities
         {
             Quantidade = quantidade;
         }
+
+        [DataMember]
+        public decimal SubTotal => Quantidade * PrecoUnitario;
     }
 }

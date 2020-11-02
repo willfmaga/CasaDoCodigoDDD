@@ -16,9 +16,9 @@ namespace CasaDoCodigo.Application.Services
             _itemPedidoService = itemPedidoService;
         }
 
-        public void UpdateQuantidade(ItemPedido itemPedido)
+        public ItemPedido UpdateQuantidade(ItemPedido itemPedido)
         {
-            _itemPedidoService.UpdateQuantidade(itemPedido);
+           return _itemPedidoService.UpdateQuantidade(itemPedido);
         }
     }
 }

@@ -7,6 +7,6 @@ namespace CasaDoCodigo.Application.Interfaces
 {
     public interface IItemPedidoApp
     {
-        void UpdateQuantidade(ItemPedido itemPedido);
+        ItemPedido UpdateQuantidade(ItemPedido itemPedido);
     }
 }

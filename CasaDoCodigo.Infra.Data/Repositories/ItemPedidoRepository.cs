@@ -24,7 +24,7 @@ namespace CasaDoCodigo.Infra.Data.Repositories
             return dbSet.Where(ip => ip.Produto.Codigo == codigoProduto && ip.Pedido.Id == pedidoId).SingleOrDefault();
         }
 
-        public void UpdateQuantidade(ItemPedido itemPedido)
+        public ItemPedido UpdateQuantidade(ItemPedido itemPedido)
         {
             var itemPedidoDB = dbSet.Where(ip => ip.Id == itemPedido.Id).SingleOrDefault();
 
@@ -34,6 +34,8 @@ namespace CasaDoCodigo.Infra.Data.Repositories
 
                 contexto.SaveChanges();
             }
+
+            return itemPedidoDB;
 
         }
     }

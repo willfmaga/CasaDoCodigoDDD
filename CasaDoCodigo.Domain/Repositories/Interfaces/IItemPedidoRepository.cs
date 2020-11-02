@@ -10,6 +10,6 @@ namespace CasaDoCodigo.Domain.Repositories.Interfaces
         ItemPedido Adicionar(ItemPedido itemPedido);
         ItemPedido GetByCodigo(string codigoProduto, int pedidoId);
 
-        void UpdateQuantidade(ItemPedido itemPedido);
+        ItemPedido UpdateQuantidade(ItemPedido itemPedido);
     }
 }
