@@ -38,5 +38,15 @@ namespace CasaDoCodigo.Infra.Data.Repositories
             return itemPedidoDB;
 
         }
+
+        public void RemoveItemPedido(int itemPedidoId)
+        {
+            var itempedido = dbSet.Where(x => x.Id == itemPedidoId).SingleOrDefault();
+
+            dbSet.Remove(itempedido);
+
+            contexto.SaveChanges();
+
+        }
     }
 }

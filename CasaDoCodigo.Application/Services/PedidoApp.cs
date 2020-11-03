@@ -11,12 +11,12 @@ namespace CasaDoCodigo.Application.Services
     public class PedidoApp : IPedidoApp
     {
         private readonly IPedidoService pedidoService;
-        private readonly IItemPedidoApp itemPedidoApp;
+        private readonly IItemPedidoService itemPedidoService;
 
-        public PedidoApp(IPedidoService pedidoService, IItemPedidoApp itemPedidoApp)
+        public PedidoApp(IPedidoService pedidoService, IItemPedidoService itemPedidoService)
         {
             this.pedidoService = pedidoService;
-            this.itemPedidoApp = itemPedidoApp;
+            this.itemPedidoService = itemPedidoService;
         }
 
         public void AddItem(string codigo, Pedido pedido)
@@ -31,7 +31,12 @@ namespace CasaDoCodigo.Application.Services
 
         public UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido, Int32 pedidoId)
         {
-            var itempedidoDB = itemPedidoApp.UpdateQuantidade(itemPedido);
+            var itempedidoDB = itemPedidoService.UpdateQuantidade(itemPedido);
+
+            if (itempedidoDB.Quantidade == 0)
+            {
+                itemPedidoService.RemoveItemPedido(itempedidoDB.Id);
+            }
 
             var pedido = pedidoService.GetPedido(pedidoId);
 

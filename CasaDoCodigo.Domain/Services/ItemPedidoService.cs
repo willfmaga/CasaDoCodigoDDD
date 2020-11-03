@@ -16,6 +16,11 @@ namespace CasaDoCodigo.Domain.Services
             this.itempedidoRepository = itempedidoRepository;
         }
 
+        public void RemoveItemPedido(int itemPedidoId)
+        {
+            itempedidoRepository.RemoveItemPedido(itemPedidoId);
+        }
+
         public ItemPedido UpdateQuantidade(ItemPedido itemPedido)
         {
             return itempedidoRepository.UpdateQuantidade(itemPedido);

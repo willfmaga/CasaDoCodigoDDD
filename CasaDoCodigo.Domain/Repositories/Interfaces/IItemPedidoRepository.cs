@@ -11,5 +11,7 @@ namespace CasaDoCodigo.Domain.Repositories.Interfaces
         ItemPedido GetByCodigo(string codigoProduto, int pedidoId);
 
         ItemPedido UpdateQuantidade(ItemPedido itemPedido);
+
+        void RemoveItemPedido(int itemPedidoId);
     }
 }

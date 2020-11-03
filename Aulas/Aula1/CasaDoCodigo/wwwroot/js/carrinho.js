@@ -26,13 +26,20 @@
             contentType: "application/json",
             data: JSON.stringify(data)
         }).done(function (response) {
+
             let itemPedido = response.itemPedido;
             let carrinho = response.carrinhoViewModel;
 
-        debugger;
-            let linhaPedido = $('[item-id=' + itemPedido.Id + ']');
+            let linhadoitem = $('[item-id=' + itemPedido.id + ']');
+            linhadoitem.find('input').val(itemPedido.quantidade);
+            linhadoitem.find('[subtotal]').html((itemPedido.subTotal).duasCasas());
 
-            debugger;
+            $('[numero-itens]').html('Total: ' + carrinho.itens.length + ' itens');
+
+            if (itemPedido.quantidade == 0) {
+                linhadoitem.remove();
+            }
+            
         });
     }
 
@@ -49,4 +56,8 @@
 }
 
 var carrinho = new Carrinho();
+
+Number.prototype.duasCasas = function () {
+    return this.toFixed(2).replace('.', ',');
+}
 

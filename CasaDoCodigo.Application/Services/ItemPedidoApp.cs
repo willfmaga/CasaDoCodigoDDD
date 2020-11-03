@@ -1,9 +1,6 @@
 ﻿using CasaDoCodigo.Application.Interfaces;
 using CasaDoCodigo.Domain.Entities;
 using CasaDoCodigo.Domain.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CasaDoCodigo.Application.Services
 {
@@ -18,7 +15,7 @@ namespace CasaDoCodigo.Application.Services
 
         public ItemPedido UpdateQuantidade(ItemPedido itemPedido)
         {
-           return _itemPedidoService.UpdateQuantidade(itemPedido);
+            return _itemPedidoService.UpdateQuantidade(itemPedido);
         }
     }
 }
