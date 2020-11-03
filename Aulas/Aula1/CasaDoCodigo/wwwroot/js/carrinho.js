@@ -39,7 +39,8 @@
             if (itemPedido.quantidade == 0) {
                 linhadoitem.remove();
             }
-            
+
+            $('[total]').html((carrinho.total).duasCasas());
         });
     }
 
