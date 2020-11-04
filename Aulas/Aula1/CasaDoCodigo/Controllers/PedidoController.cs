@@ -53,19 +53,35 @@ namespace CasaDoCodigo.Controllers
             return View(carrinhoviewModel);
         }
 
-        public IActionResult Resumo()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Resumo(Cadastro cadastro)
         {
-            var pedido = pedidoApp.GetPedido(GetPedidoId());
+            if (ModelState.IsValid)
+            {
+                var pedido = pedidoApp.GetPedido(GetPedidoId());
 
-            return View(pedido);
+                pedidoApp.UpdateCadastro(pedido, cadastro);
+
+                return View(pedido);
+            }
+
+            return RedirectToAction("Cadastro");
+
         }
 
         public IActionResult Cadastro()
         {
-            return View();
+            var pedido = pedidoApp.GetPedido(GetPedidoId());
+
+            if (pedido == null)
+                RedirectToAction("Carrossel");
+
+            return View(pedido.Cadastro);
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public UpdateQuantidadeAjaxResponse UpdateQuantidade([FromBody]ItemPedido itemPedido)
         {
             int pedidoId = (int)GetPedidoId();

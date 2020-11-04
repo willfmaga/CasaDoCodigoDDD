@@ -12,11 +12,13 @@ namespace CasaDoCodigo.Application.Services
     {
         private readonly IPedidoService pedidoService;
         private readonly IItemPedidoService itemPedidoService;
+        private readonly ICadastroService cadastroService;
 
-        public PedidoApp(IPedidoService pedidoService, IItemPedidoService itemPedidoService)
+        public PedidoApp(IPedidoService pedidoService, IItemPedidoService itemPedidoService, ICadastroService cadastroService)
         {
             this.pedidoService = pedidoService;
             this.itemPedidoService = itemPedidoService;
+            this.cadastroService = cadastroService;
         }
 
         public void AddItem(string codigo, Pedido pedido)
@@ -27,6 +29,13 @@ namespace CasaDoCodigo.Application.Services
         public Pedido GetPedido(int? pedidoId)
         {
             return pedidoService.GetPedido(pedidoId);
+        }
+
+        public Pedido UpdateCadastro(Pedido pedido,Cadastro cadastro)
+        {
+            cadastroService.Update(pedido.Id, cadastro);
+
+            return pedido;
         }
 
         public UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido, Int32 pedidoId)

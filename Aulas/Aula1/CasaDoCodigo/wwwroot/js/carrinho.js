@@ -1,14 +1,14 @@
 ﻿class Carrinho {
-    clickIncremento(btn) {
+    clickIncremento(button) {
 
-        let data = this.GetData(btn);
+        let data = this.GetData(button);
         data.Quantidade++;
         this.PostQuantidade(data);
 
     }
 
-    clickDecremento(btn) {
-        let data = this.GetData(btn);
+    clickDecremento(button) {
+        let data = this.GetData(button);
         data.Quantidade--;
         this.PostQuantidade(data);
 
@@ -20,11 +20,20 @@
     }
 
     PostQuantidade(data) {
+
+        let token = $('[name=__RequestVerificationToken]').val();
+
+        let headers = {};
+
+        headers['RequestVerificationToken'] = token;
+
+
         $.ajax({
             url: "/pedido/updatequantidade",
             type: "POST",
             contentType: "application/json",
-            data: JSON.stringify(data)
+            data: JSON.stringify(data),
+            headers: headers
         }).done(function (response) {
 
             let itemPedido = response.itemPedido;
@@ -47,11 +56,11 @@
     GetData(elemento) {
         var linhaDoItem = $(elemento).parents('[item-id]');
         var itemId = $(linhaDoItem).attr("item-id");
-        var novaQtde = $(linhaDoItem).find("input").val();
+        var novaQuantidade = $(linhaDoItem).find("input").val();
 
         return {
             Id: itemId,
-            Quantidade: novaQtde
+            Quantidade: novaQuantidade
         };
     }
 }

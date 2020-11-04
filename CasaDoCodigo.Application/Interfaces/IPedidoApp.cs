@@ -13,5 +13,7 @@ namespace CasaDoCodigo.Application.Interfaces
         void AddItem(string codigo, Pedido pedido);
 
         UpdateQuantidadeResponse UpdateQuantidade(ItemPedido itemPedido, Int32 pedidoId);
+
+        Pedido UpdateCadastro(Pedido pedido,Cadastro cadastro);
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CasaDoCodigo.Domain.Entities
 {
@@ -25,6 +26,21 @@ namespace CasaDoCodigo.Domain.Entities
         public string Municipio { get; set; } = "";
         [Required]
         public string UF { get; set; } = "";
+
+        public void Update(Cadastro cadastro)
+        {
+            this.Bairro = cadastro.Bairro;
+            this.CEP = cadastro.CEP;
+            this.Complemento = cadastro.Complemento;
+            this.Email = cadastro.Email;
+            this.Endereco = cadastro.Endereco;
+            this.Municipio = cadastro.Municipio;
+            this.Nome = cadastro.Nome;
+            this.Telefone = cadastro.Telefone;
+            this.UF = cadastro.UF;
+
+        }
+
         [Required]
         public string CEP { get; set; } = "";
     }
