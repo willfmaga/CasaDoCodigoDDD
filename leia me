@@ -1,0 +1,48 @@
+Data Source="localhost, 1433";Initial Catalog=CasaDoCodigo;User ID=sa;Password=Banco@2020;
+
+"Server =localhost,1433; Initial Catalog=CasaDoCodigo; MultipleActiveResultSets = true; User Id = sa; Password =Banco@2020"
+
+
+Resumo:
+	Criar projeto MVC(Model, View e Controller)
+	Trabalhando com Rotas
+	Como criar o conceito Code First o Banco de Dados(Migration, EF Core)
+	Relacionamentos (Propriedades de navegação)
+	Conceito de Migração(Migration)Update-Database
+	Trabalhando com Json para Dados para inserção no DataBase
+	Exibindo no carrossel, combinando com HTML usando Razor
+	Como trabalhar com o padrão Repository
+	O Componente TAG HELPER que se assemelham a elementos do HTML
+	Como pegar o código de produto passando através da Rotas
+	Manter o Id do Pedido usando sessões
+	Trabalhando com carrinho e a tela Resumo, gravando e recuperando Pedido e Itens no banco de dados usando o EF Core
+	Finalizando o Pedido 
+	Criando uma ViewModel
+	Fornecendo dados customizados para uma view
+	Preparando o Objeto de Resposta Para a Chamada AJAX
+	Refatorando Repositórios
+	Delegando funções entre repositórios com injeção de dependência
+	Atualizando o Item na View com JavaScript
+	Os métodos jQuery html() e val()
+	Atualizando Totais do Carrinho na View com JavaScript
+	Movendo lógica de negócios para fora da view
+	Montando a View de Cadastro
+	Entendendo formulários ASP.NET Core
+	Binding de campos com propriedades do modelo com o atributo asp-for
+	Injetando o Cadastro na View e Redirecionando se Necessário
+	O método RedirectToAction()
+	Validando Campos do Formulário no Cliente
+	Validando campos do formulários com o atributo asp-validation-for
+	Customizando Validações no Modelo de Cadastro
+	Validando entidades do modelo com MinLength, MaxLength e Required
+	Validando Dados do Formulário no Servidor
+	Consultando ModelState.IsValid()
+	Gravando Cadastro no Banco de Dados
+	Protegendo uma Action com ValidateAntiForgeryToken
+	Defendendo sua aplicação contra ataques CSRF
+	Protegendo a Action do AJAX Contra Ataques Maliciosos
+	Usando token anti-falsificação numa requisição AJAX
+	Aplicando os Campos do Cadastro do Modelo na View de Resumo
+	Renderizando modelo do Cadastro nos campos com Razor
+	Refatorando o Arquivo Carrinho.js
+	
